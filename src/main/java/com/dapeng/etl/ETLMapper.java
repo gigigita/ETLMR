@@ -10,6 +10,7 @@ import java.io.IOException;
 
 
 public class ETLMapper extends Mapper<LongWritable, Text,NullWritable,Text> {
+
     Text text=new Text();
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
