@@ -18,7 +18,7 @@ public class CustomPartitioner implements Partitioner {
     @Override
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         int i = abs(key.hashCode() % 2);
-        System.out.println(i);
+//        System.out.println(i);
         return i;
     }
 

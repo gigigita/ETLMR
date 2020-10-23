@@ -18,6 +18,20 @@ import java.util.List;
  * description
  */
 public class JDBCUtils {
+    public static ResultSet getRS() throws ClassNotFoundException, SQLException {
+
+        Class.forName("org.postgresql.Driver");
+        //2.建立连接
+        Connection conn= DriverManager.getConnection("jdbc:postgresql://localhost:5432/test","postgres","123456");
+        //3.创建语句执行对象
+        java.sql.Statement st=conn.createStatement();//使用Statement对象
+        //4.执行语句
+        ResultSet rs=st.executeQuery("select id,chapter_node,handin,score,handin_num from dwd_student_stage_work_detail_new limit 20");
+
+        return rs;
+    }
+
+
     public static HashMap getString() throws ClassNotFoundException, SQLException {
 
         Class.forName("org.postgresql.Driver");
@@ -26,7 +40,7 @@ public class JDBCUtils {
         //3.创建语句执行对象
         java.sql.Statement st=conn.createStatement();//使用Statement对象
         //4.执行语句
-        ResultSet rs=st.executeQuery("select id,chapter_node,handin,score,handin_num from dwd_student_stage_work_detail_new limit 100");
+        ResultSet rs=st.executeQuery("select id,chapter_node,handin,score,handin_num from dwd_student_stage_work_detail_new limit 20");
         HashMap<String, List<DetailBean>> stringListHashMap = new HashMap<>();
 
 
@@ -49,4 +63,6 @@ public class JDBCUtils {
 //        String string = JSON.toJSONString(stringListHashMap);
         return stringListHashMap;
     }
+
+
 }
